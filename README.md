@@ -8,7 +8,7 @@ HOW TO RUN:
 
 EXAMPLE OUTPUT:
 ```
-About to print all the valid positions for 4 queens on a 4 by 4 board.
+Printing all the valid positions for 4 queens on a 4 by 4 board.
 -----------------
 |   | * |   |   |
 -----------------
@@ -29,5 +29,6 @@ About to print all the valid positions for 4 queens on a 4 by 4 board.
 -----------------
 |   | * |   |   |
 -----------------
+
 
 ```
