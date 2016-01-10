@@ -7,7 +7,7 @@ HOW TO RUN:
 3. ./queens 4
 
 EXAMPLE OUTPUT:
-`
+```
 About to print all the valid positions for 4 queens on a 4 by 4 board.
 -----------------
 |   | * |   |   |
@@ -30,4 +30,4 @@ About to print all the valid positions for 4 queens on a 4 by 4 board.
 |   | * |   |   |
 -----------------
 
-`
+```
