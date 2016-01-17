@@ -1,11 +1,13 @@
 class QueenBoardTest {
     public static void main(String[] args) {
-        int n = 4;
-        if (args.length == 1) {
-            n = Integer.parseInt(args[0]);
+        try {
+            Options options = Options.read(args);
+            System.out.printf("Printing all the valid positions for %d queens on a %d by %d board.\n", options.getN(), options.getN(), options.getN());
+            QueenBoard queenBoard = new QueenBoard(options);
+            queenBoard.printValidPositions();
+        } catch (UnrecognizedOptionException e) {
+            System.out.printf("Error: %s\n", e.getMessage());
+            System.out.printf("Usage: java queens %s\n", Options.getUsageExample());
         }
-        System.out.printf("Printing all the valid positions for %d queens on a %d by %d board.\n", n, n, n);
-        QueenBoard queenBoard = new QueenBoard(n);
-        queenBoard.printValidPositions();
     }
 }

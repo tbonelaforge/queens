@@ -5,18 +5,30 @@ class QueenBoard {
 
     private int level;
 
+    private Options options;
+
     public QueenBoard(int n) {
         this.n = n;
         this.a = new int[n];
     }
 
+    public QueenBoard(Options options) {
+        this.options = options;
+        this.n = options.getN();
+        this.a = new int[n];
+    }
+
     public void printValidPositions() {
+        int count = 0;
+
         level = 1;
         while (level > 0) {
             if (testPredicate()) {
                 if (level >= n) {
-                    prettyPrintCurrentPositions();
-                    System.out.println("\n");
+                    count += 1;
+                    if (!options.isCountOnly()) {
+                        prettyPrintCurrentPositions();
+                    }
                     tryNextPosition();
                 } else {
                     level += 1;
@@ -25,6 +37,7 @@ class QueenBoard {
                 tryNextPosition();
             }
         }
+        System.out.printf("Found %d valid configurations\n", count);
     }
 
     private boolean testPredicate() {
@@ -86,6 +99,7 @@ class QueenBoard {
             System.out.println("|");
             printHorizontalLine();
         }
+        System.out.printf("\n\n");
     }
 
     private void printHorizontalLine() {
