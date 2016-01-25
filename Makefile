@@ -6,11 +6,14 @@ queens: QueenBoardTest.class
 	@echo 'java QueenBoardTest $$@' >> queens
 	@chmod +x queens
 
-QueenBoardTest.class: QueenBoardTest.java QueenBoard.class
+QueenBoardTest.class: QueenBoardTest.java QueenBoard.class Options.class
 	javac QueenBoardTest.java
 
 QueenBoard.class: QueenBoard.java
 	javac QueenBoard.java
+
+Options.class: Options.java
+	javac Options.java
 
 .PHONY: clean
 

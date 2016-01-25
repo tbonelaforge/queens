@@ -1,0 +1,49 @@
+terrancfordsmbp:queens tford$ time ./queens 4 --count-only
+Printing all the valid positions for 4 queens on a 4 by 4 board.
+Found 2 valid configurations
+
+real  0m0.106s
+user  0m0.086s
+sys   0m0.027s
+terrancfordsmbp:queens tford$ time ./queens 8 --count-only
+Printing all the valid positions for 8 queens on a 8 by 8 board.
+Found 92 valid configurations
+
+real  0m0.118s
+user  0m0.092s
+sys   0m0.027s
+terrancfordsmbp:queens tford$ time ./queens 10 --count-only
+Printing all the valid positions for 10 queens on a 10 by 10 board.
+Found 724 valid configurations
+
+real  0m0.132s
+user  0m0.119s
+sys   0m0.031s
+terrancfordsmbp:queens tford$ time ./queens 12 --count-only
+Printing all the valid positions for 12 queens on a 12 by 12 board.
+Found 14200 valid configurations
+
+real  0m0.232s
+user  0m0.236s
+sys   0m0.027s
+terrancfordsmbp:queens tford$ time ./queens 14 --count-only
+Printing all the valid positions for 14 queens on a 14 by 14 board.
+Found 365596 valid configurations
+
+real  0m4.220s
+user  0m4.225s
+sys   0m0.028s
+terrancfordsmbp:queens tford$ time ./queens 15 --count-only
+Printing all the valid positions for 15 queens on a 15 by 15 board.
+Found 2279184 valid configurations
+
+real  0m27.163s
+user  0m27.150s
+sys   0m0.045s
+terrancfordsmbp:queens tford$ time ./queens 16 --count-only
+Printing all the valid positions for 16 queens on a 16 by 16 board.
+Found 14772512 valid configurations
+
+real  2m11.250s
+user  2m11.243s
+sys   0m0.094s

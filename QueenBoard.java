@@ -5,17 +5,29 @@ class QueenBoard {
 
     private int level;
 
-    private Options options;
+    private boolean isCountOnly;
+
+    private boolean[] columns;
+
+    private boolean[] leftDiagonals;
+
+    private boolean[] rightDiagonals;
 
     public QueenBoard(int n) {
-        this.n = n;
-        this.a = new int[n];
+        this(n, false);
     }
 
     public QueenBoard(Options options) {
-        this.options = options;
-        this.n = options.getN();
+        this(options.getN(), options.isCountOnly());
+    }
+
+    public QueenBoard(int n, boolean isCountOnly) {
+        this.n = n;
+        this.isCountOnly = isCountOnly;
         this.a = new int[n];
+        this.columns = new boolean[n];
+        this.leftDiagonals = new boolean[2 * n - 1];
+        this.rightDiagonals = new boolean[2 * n - 1];
     }
 
     public void printValidPositions() {
@@ -26,11 +38,12 @@ class QueenBoard {
             if (testPredicate()) {
                 if (level >= n) {
                     count += 1;
-                    if (!options.isCountOnly()) {
+                    if (!isCountOnly) {
                         prettyPrintCurrentPositions();
                     }
                     tryNextPosition();
                 } else {
+                    setBooleans(level - 1, true);
                     level += 1;
                 }
             } else {
@@ -41,14 +54,16 @@ class QueenBoard {
     }
 
     private boolean testPredicate() {
-        int j = level - 1;
-        for (int i = 0; i < j; i++) {
-            if (a[i] == a[j]) {
-                return false;
-            }
-            if (Math.abs(a[j] - a[i]) == j - i) {
-                return false;
-            }
+        int i = level - 1;
+
+        if (columns[columnIndex(i)]) {
+            return false;
+        }
+        if (leftDiagonals[leftDiagonalIndex(i)]) {
+            return false;
+        }
+        if (rightDiagonals[rightDiagonalIndex(i)]) {
+            return false;
         }
         return true;
     }
@@ -68,6 +83,9 @@ class QueenBoard {
         while (level > 0 && incrementPosition(level - 1) == null) {
             resetPosition(level - 1);
             level -= 1;
+            if (level >= 1) {
+                setBooleans(level - 1, false);
+            }
         }
         return this;
     }
@@ -83,6 +101,24 @@ class QueenBoard {
     private QueenBoard resetPosition(int i) {
         a[i] = 0;
         return this;
+    }
+
+    private void setBooleans(int i, boolean value) {
+        columns[columnIndex(i)] = value;
+        leftDiagonals[leftDiagonalIndex(i)] = value;
+        rightDiagonals[rightDiagonalIndex(i)] = value;
+    }
+
+    private int columnIndex(int i) {
+        return a[i];
+    }
+
+    private int leftDiagonalIndex(int i) {
+        return i + columnIndex(i);
+    }
+
+    private int rightDiagonalIndex(int i) {
+        return i - columnIndex(i) + n - 1;
     }
 
     private void prettyPrintCurrentPositions() {
